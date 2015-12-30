@@ -11,9 +11,9 @@ import BetaUser from './components/BetaUser.jsx'
 
 var routes = (
   <Router history={createHistory()}>
-    <Route path="/" component={SplashPage}/>
-    <Route path="/demo" component={Landing}/>
-    <Route path="/beta" component={BetaUser}/>
+    <Route path="/kitchtemp" component={SplashPage}/>
+    <Route path="/kitchtemp/demo" component={Landing}/>
+    <Route path="/kitchtemp/beta" component={BetaUser}/>
 
   </Router>
 )

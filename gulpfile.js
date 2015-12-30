@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var watchify = require('watchify');
 var notify = require('gulp-notify');
+var ghPages = require('gh-pages');
 
 var stylus = require('gulp-stylus');
 var autoprefixer = require('gulp-autoprefixer');
@@ -16,6 +17,10 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var historyApiFallback = require('connect-history-api-fallback')
 
+gulp.task('html', function () {
+  gulp.src('index.html')
+  .pipe(gulp.dest('build'))
+});
 
 /*
   Styles Task
@@ -102,6 +107,10 @@ function buildScript(file, watch) {
 
 gulp.task('scripts', function() {
   return buildScript('main.js', false); // this will run once because we set watch to false
+});
+
+gulp.task('deploy', ['html', 'images','styles','scripts'], function () {
+  ghPages.publish('build');
 });
 
 // run 'scripts' task first, then watch for future changes
